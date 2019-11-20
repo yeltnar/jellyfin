@@ -1,0 +1,1 @@
+docker pull jellyfin/jellyfin
