@@ -13,7 +13,7 @@ services:
       - ./cache:/cache
       - ./media:/media
       - /mnt/f/TV:/hdd_tv
-      - /mnt/f/TV:/hdd_movies
+      - /mnt/f/Movies:/hdd_movies
       - ~/.sshfs_mount/Star\ Wars:/sshfs_Star_Wars
     restart: "unless-stopped"
 
