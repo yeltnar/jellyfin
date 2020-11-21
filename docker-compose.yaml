@@ -1,8 +1,8 @@
 version: "3"
 services:
   jellyfin:
-    # image: jellyfin/jellyfin
-    image: linuxserver/jellyfin
+    image: jellyfin/jellyfin
+    # image: linuxserver/jellyfin
     container_name: jellyfin
     user: 1000:1000
     #network_mode: "host"
@@ -12,5 +12,8 @@ services:
       - ./config:/config
       - ./cache:/cache
       - ./media:/media
+      - /mnt/f/TV:/hdd_tv
+      - /mnt/f/TV:/hdd_movies
+      - ~/.sshfs_mount/Star\ Wars:/sshfs_Star_Wars
     restart: "unless-stopped"
 
