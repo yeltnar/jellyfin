@@ -7,13 +7,16 @@ services:
     user: 1000:1000
     #network_mode: "host"
     ports:
-      - 8096:8096
+      - 8096:8096      
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
     volumes:
       - ./config:/config
       - ./cache:/cache
-      - ./media:/media
-      - /mnt/f/TV:/hdd_tv
-      - /mnt/f/Movies:/hdd_movies
-      - ~/.sshfs_mount/Star\ Wars:/sshfs_Star_Wars
+        #- ./jellyfin-web:/jellyfin/jellyfin-web
+        #- /mnt/f/TV:/hdd_tv
+      - /tmp/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
+      - /tmp/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
+        #- /mnt/f/Movies:/hdd_movies
     restart: "unless-stopped"
-
