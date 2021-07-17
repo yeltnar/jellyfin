@@ -15,14 +15,12 @@ echo $IPFS_PATH
 ipfs config profile apply lowpower
 ipfs daemon --mount --mount-ipfs=/tmp/$folder/ipfs  --mount-ipns=/tmp/$folder/ipns &
 
+echo 'folder=/tmp/'$folder > .env
+cat .env
+
 sleep 2
 printf '%s\n' 'start wait for 10 sec'
 for i in {1..9}; do  printf "$i "; sleep 1; done
 printf '\n'
-
-# echo $folder
-# echo "folder="$folder
-echo 'folder=/tmp/'$folder > .env
-cat .env
 
 docker-compose up
