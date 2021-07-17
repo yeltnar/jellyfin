@@ -16,7 +16,7 @@ services:
       - ./cache:/cache
         #- ./jellyfin-web:/jellyfin/jellyfin-web
         #- /mnt/f/TV:/hdd_tv
-      - /tmp/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
-      - /tmp/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
+      - ${folder}/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
+      - ${folder}/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
         #- /mnt/f/Movies:/hdd_movies
     restart: "unless-stopped"
