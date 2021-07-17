@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker run -d \
 --volume $(pwd)/config:/config \
 --volume $(pwd)/cache:/cache \

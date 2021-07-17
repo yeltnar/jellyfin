@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # docker run node:latest node -e 'console.log(new Date().getTime());'
 folder=$(docker run node:latest node -e 'console.log(new Date().getTime());')
 
@@ -15,26 +17,8 @@ ipfs daemon --mount --mount-ipfs=/tmp/$folder/ipfs  --mount-ipns=/tmp/$folder/ip
 
 sleep 2
 printf '%s\n' 'start wait for 10 sec'
-sleep 1
-printf 1
-sleep 1
-printf 2
-sleep 1
-printf 3
-sleep 1 
-printf 4
-sleep 1
-printf 5
-sleep 1
-printf 6
-sleep 1 
-printf 7 
-sleep 1
-printf 8
-sleep 1
-printf '%s\n' "9"
-sleep 1
-
+for i in {1..9}; do  printf "$i "; sleep 1; done
+printf '\n'
 
 # echo $folder
 # echo "folder="$folder
