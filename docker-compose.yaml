@@ -4,7 +4,7 @@ services:
     image: jellyfin/jellyfin
     # image: linuxserver/jellyfin
     container_name: jellyfin
-    user: 1000:1000
+    user: 1001:1000
     #network_mode: "host"
     ports:
       - 8096:8096      
@@ -16,7 +16,9 @@ services:
       - ./cache:/cache
         #- ./jellyfin-web:/jellyfin/jellyfin-web
         #- /mnt/f/TV:/hdd_tv
-      - ${folder}/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
-      - ${folder}/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
+      # - ${folder}/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
+      # - ${folder}/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
         #- /mnt/f/Movies:/hdd_movies
-    restart: "unless-stopped"
+      - /mnt/exposed-pi/media/pi/TOSHIBA EXT/media/tv:/tv_dir:rw
+      - /mnt/exposed-pi/media/pi/TOSHIBA EXT/media/movies:/movies_dir:rw
+    # restart: "unless-stopped"

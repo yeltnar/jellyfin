@@ -12,16 +12,17 @@ chown $(whoami) /tmp/$folder/ipns
 
 export IPFS_PATH=$(pwd)/.ipfs
 
-printf 'make sure the daemon can find its self'
-ipfs daemon & 
-sleep 5
-echo 'rm' > "/tmp/$folder rm.txt"
-ipfs add "/tmp/$folder rm.txt"
-rm "/tmp/$folder rm.txt"
-ipfs shutdown 
+# printf 'make sure the daemon can find its self'
+# ipfs daemon & 
+# sleep 5
+# echo 'rm' > "/tmp/$folder rm.txt"
+# ipfs add "/tmp/$folder rm.txt"
+# rm "/tmp/$folder rm.txt"
+# sleep 5 
+# ipfs shutdown 
 
 echo $IPFS_PATH
-ipfs config profile apply lowpower
+# ipfs config profile apply lowpower
 ipfs daemon --mount --mount-ipfs=/tmp/$folder/ipfs  --mount-ipns=/tmp/$folder/ipns &
 
 echo 'folder=/tmp/'$folder > .env
