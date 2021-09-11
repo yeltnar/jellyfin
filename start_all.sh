@@ -4,7 +4,7 @@
 
 if [[ ! -z $(ls /mnt/exposed-pi) ]]
 then
-    echo 'mounted; starting jellyfins';
+    echo 'mounted; starting jellyfin';
     docker-compose up -d 
 else
     echo 'not mounted; exiting'
