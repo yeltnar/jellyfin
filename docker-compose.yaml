@@ -5,6 +5,8 @@ services:
     # image: linuxserver/jellyfin
     container_name: jellyfin
     user: 1000:1000
+    group_add: 
+      - "109"
     devices:
       - /dev/dri/card0:/dev/dri/card0
       - /dev/dri/renderD128:/dev/dri/renderD128
