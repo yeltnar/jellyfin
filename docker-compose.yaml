@@ -21,24 +21,20 @@ services:
         #- 7359:7359/udp #optional
         #- 1900:1900/udp #optional
     volumes:
-      - config:/config
+      # - config:/_config
+      - /mnt/minio/jellyfin-config/:/config
       - cache:/cache
-        #- ./jellyfin-web:/jellyfin/jellyfin-web
-        #- /mnt/f/TV:/hdd_tv
-      # - ${folder}/ipfs/QmRz67PcNnmyfoQ4M8nG1NdkM4WKSsFP4s4cuXt5XBgZyv:/ipfs_movies     
-      # - ${folder}/ipfs/QmSmUjbeJxgtGAUyDYLa5i8QM1SRhTVgv9NPBFyREhFbnC:/ipfs_tv      
-        #- /mnt/f/Movies:/hdd_movies
-      - $PWD/media/movies:/local_movies
-      - $PWD/media/tv:/local_tv
-      - $PWD/media/yt-dl:/yt-dl
-      - $PWD/xmltvdata/xmltv.xml:/xmltv.xml
-      - /mnt/thx_ju/media/tv:/tv_dir:rw
-      - /mnt/thx_ju/media/movies:/movies_dir:rw
-      - /mnt/wd_blue_nvme/media/movies:/wd_blue_nvme_movies_dir:rw
-      - /mnt/thx_ju/media/radarr-movies:/radarr-movies:rw
-      - /mnt/thx_ju/media/sonarr-shows:/sonarr-shows:rw
-      - /mnt/wd_blue_nvme/jellyfin_transcodes:/mnt/wd_blue_nvme/jellyfin_transcodes
-      - /mnt/wd_blue_nvme/jellyfin_recordings:/mnt/wd_blue_nvme/jellyfin_recordings
+      # - $PWD/media/movies:/local_movies
+      # - $PWD/media/tv:/local_tv
+      # - $PWD/media/yt-dl:/yt-dl
+      # - $PWD/xmltvdata/xmltv.xml:/xmltv.xml
+      # - /mnt/thx_ju/media/tv:/tv_dir:rw
+      # - /mnt/thx_ju/media/movies:/movies_dir:rw
+      # - /mnt/thx_ju/media/radarr-movies:/radarr-movies:rw
+      # - /mnt/thx_ju/media/sonarr-shows:/sonarr-shows:rw
+      # - /mnt/wd_blue_nvme/media/movies:/wd_blue_nvme_movies_dir:rw
+      # - /mnt/wd_blue_nvme/jellyfin_transcodes:/mnt/wd_blue_nvme/jellyfin_transcodes
+      # - /mnt/wd_blue_nvme/jellyfin_recordings:/mnt/wd_blue_nvme/jellyfin_recordings
       - /mnt/minio/movies:/media/movies
       - /mnt/minio/shows:/media/shows
     restart: "unless-stopped"
