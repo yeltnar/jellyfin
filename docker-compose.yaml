@@ -12,7 +12,9 @@ services:
       - /dev/dri/renderD128:/dev/dri/renderD128
     environment:
       - TZ=America/Chicago
-    #network_mode: "host"
+    # network_mode: "host"
+    networks:
+        - main
     ports:
       - 8096:8096      
         #- 8920:8920 #optional
@@ -41,3 +43,8 @@ services:
 volumes:
   config:
   cache: 
+networks:
+  main:
+    driver: bridge
+    driver_opts:
+      gateway: 192.168.2.1 # set the gateway for when multiple interfaces are used. Fixes routing when on LAN 
