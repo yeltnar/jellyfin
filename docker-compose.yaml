@@ -39,10 +39,17 @@ services:
       - /mnt/thx_ju/media/sonarr-shows:/sonarr-shows:rw
       - /mnt/wd_blue_nvme/jellyfin_transcodes:/mnt/wd_blue_nvme/jellyfin_transcodes
       - /mnt/wd_blue_nvme/jellyfin_recordings:/mnt/wd_blue_nvme/jellyfin_recordings
+      - /mnt/minio/movies:/media/movies
+      - /mnt/minio/shows:/media/shows
     restart: "unless-stopped"
 volumes:
   config:
   cache: 
+  # movies:
+  #   driver_opts: 
+  #     type: rclone 
+  #     device: ":s3:/movies"
+  #     o: "s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
 networks:
   main:
     driver: bridge
