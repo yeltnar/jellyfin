@@ -1,1 +1,2 @@
-docker-compose --env-file .env up --build -d 
+podman-compose --env-file  changeme.env --verbose up --build -d |& tee log.txt
+

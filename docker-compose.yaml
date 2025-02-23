@@ -4,17 +4,17 @@ services:
     image: jellyfin/jellyfin
     # image: linuxserver/jellyfin
     container_name: jellyfin
-    user: 1000:1000
-    group_add: 
-      - "109"
-    devices:
-      - /dev/dri/card0:/dev/dri/card0
-      - /dev/dri/renderD128:/dev/dri/renderD128
+    # user: 1000:100
+    # group_add: 
+    #   - "109"
+    # devices:
+    #   - /dev/dri/card0:/dev/dri/card0
+    #   - /dev/dri/renderD128:/dev/dri/renderD128
     environment:
       - TZ=America/Chicago
-    # network_mode: "host"
-    networks:
-        - main
+    network_mode: "host"
+    # networks:
+    #     - main
     ports:
       - 8096:8096      
         #- 8920:8920 #optional
@@ -22,7 +22,9 @@ services:
         #- 1900:1900/udp #optional
     volumes:
       # - config:/_config
-      - /mnt/minio/jellyfin-config/:/config
+      - config:/config
+      # - /mnt/minio/jellyfin-config:/config
+      # - /tmp/test:/config
       - cache:/cache
       # - $PWD/media/movies:/local_movies
       # - $PWD/media/tv:/local_tv
@@ -35,19 +37,29 @@ services:
       # - /mnt/wd_blue_nvme/media/movies:/wd_blue_nvme_movies_dir:rw
       # - /mnt/wd_blue_nvme/jellyfin_transcodes:/mnt/wd_blue_nvme/jellyfin_transcodes
       # - /mnt/wd_blue_nvme/jellyfin_recordings:/mnt/wd_blue_nvme/jellyfin_recordings
-      - /mnt/minio/movies:/media/movies
-      - /mnt/minio/shows:/media/shows
+      - movies:/media/movies
+      - shows:/media/shows
     restart: "unless-stopped"
 volumes:
-  config:
   cache: 
-  # movies:
-  #   driver_opts: 
-  #     type: rclone 
-  #     device: ":s3:/movies"
-  #     o: "s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
-networks:
-  main:
-    driver: bridge
-    driver_opts:
-      gateway: 192.168.2.1 # set the gateway for when multiple interfaces are used. Fixes routing when on LAN 
+  config:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:/jellyfin-config"
+      # o: "allow-other=true,uid=1000,gid=100,vfs-cache-mode=writes,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+      o: "allow-other,vfs-cache-mode=writes,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+  movies:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:/movies"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+  shows:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:/shows"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+# networks:
+#   main:
+#     driver: bridge
+#     driver_opts:
+#       gateway: 192.168.2.1 # set the gateway for when multiple interfaces are used. Fixes routing when on LAN 
