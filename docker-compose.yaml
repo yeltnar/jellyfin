@@ -12,7 +12,7 @@ services:
     #   - /dev/dri/renderD128:/dev/dri/renderD128
     environment:
       - TZ=America/Chicago
-    network_mode: "host"
+    # network_mode: "host"
     # networks:
     #     - main
     ports:
@@ -43,21 +43,16 @@ services:
 volumes:
   cache: 
   config:
-    driver_opts: 
-      type: rclone 
-      device: ":s3:/jellyfin-config"
-      # o: "allow-other=true,uid=1000,gid=100,vfs-cache-mode=writes,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
-      o: "allow-other,vfs-cache-mode=writes,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
   movies:
     driver_opts: 
       type: rclone 
       device: ":s3:/movies"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
   shows:
     driver_opts: 
       type: rclone 
       device: ":s3:/shows"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_access_key},s3-endpoint=${s3_endpoint}" 
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
 # networks:
 #   main:
 #     driver: bridge
