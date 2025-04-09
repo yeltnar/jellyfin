@@ -3,5 +3,6 @@ config
 jellyfin-web
 .ipfs
 .env
-
 log.txt
+backup.env
+changeme.env
