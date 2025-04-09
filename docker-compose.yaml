@@ -39,6 +39,7 @@ services:
       # - /mnt/wd_blue_nvme/jellyfin_recordings:/mnt/wd_blue_nvme/jellyfin_recordings
       - movies:/media/movies
       - shows:/media/shows
+      - youtube:/media/youtube
     restart: "unless-stopped"
 volumes:
   cache: 
@@ -52,6 +53,11 @@ volumes:
     driver_opts: 
       type: rclone 
       device: ":s3:/shows"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
+  youtube:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:/youtube"
       o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
 # networks:
 #   main:
