@@ -1,4 +1,4 @@
-source ./backup.env
+source $HOME/.config/jellyfin/backup.env
 
 if [ -z "$WORKDIR" ]; then
   echo "WORKDIR is undefined... exiting";
@@ -34,4 +34,4 @@ fi
 
 borg create --stats --progress --compression lz4 ::{user}-{now}  $SRC_DIR
 
-borg prune -v --list --keep-daily=7 --keep-weekly="5" --keep-monthly="12" --keep-yearly="2"
+borg prune -v --list --keep-within=1d --keep-daily=7 --keep-weekly="5" --keep-monthly="12" --keep-yearly="2"

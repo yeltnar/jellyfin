@@ -1,2 +1,3 @@
-podman-compose --env-file  changeme.env --verbose up --build -d |& tee log.txt
+env_file="$HOME/.config/jellyfin/changeme.env"
+podman-compose --env-file "$env_file" --verbose up --build -d |& tee log.txt
 
