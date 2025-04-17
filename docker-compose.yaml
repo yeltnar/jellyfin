@@ -21,10 +21,7 @@ services:
         #- 7359:7359/udp #optional
         #- 1900:1900/udp #optional
     volumes:
-      # - config:/_config
-      - config:/config
-      # - /mnt/minio/jellyfin-config:/config
-      # - /tmp/test:/config
+      - ./config:/config
       - cache:/cache
       # - $PWD/media/movies:/local_movies
       # - $PWD/media/tv:/local_tv
@@ -43,7 +40,7 @@ services:
     restart: "unless-stopped"
 volumes:
   cache: 
-  config:
+  # config:
   movies:
     driver_opts: 
       type: rclone 
