@@ -37,6 +37,7 @@ services:
       - movies:/media/movies
       - shows:/media/shows
       - youtube:/media/youtube
+      - music:/media/music
     restart: "unless-stopped"
 volumes:
   cache: 
@@ -55,6 +56,11 @@ volumes:
     driver_opts: 
       type: rclone 
       device: ":s3:/youtube"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
+  music:
+    driver_opts: 
+      type: rclone 
+      device: ":s3:/music"
       o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${s3_access_key_id},s3-secret-access-key=${s3_secret_access_key},s3-endpoint=${s3_endpoint}" 
 # networks:
 #   main:
