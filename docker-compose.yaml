@@ -43,25 +43,29 @@ volumes:
   cache: 
   # config:
   movies:
-    driver_opts: 
-      type: rclone 
-      device: ":s3:/movies"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${movies_access_key_id},s3-secret-access-key=${movies_secret_access_key},s3-endpoint=${movies_endpoint}" 
+    driver_opts:
+      type: rclone
+      device: ":s3,override.ca_cert=/home/drew/.config/jellyfin/rustfs-ca.pem:/movies"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Other,s3-access-key-id=${movies_access_key_id},s3-secret-access-key=${movies_secret_access_key},s3-endpoint=${movies_endpoint}"
+
   shows:
-    driver_opts: 
-      type: rclone 
-      device: ":s3:/shows"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${shows_access_key_id},s3-secret-access-key=${shows_secret_access_key},s3-endpoint=${shows_endpoint}" 
+    driver_opts:
+      type: rclone
+      device: ":s3,override.ca_cert=/home/drew/.config/jellyfin/rustfs-ca.pem:/shows"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Other,s3-access-key-id=${shows_access_key_id},s3-secret-access-key=${shows_secret_access_key},s3-endpoint=${shows_endpoint}"
+
   youtube:
-    driver_opts: 
-      type: rclone 
-      device: ":s3:/youtube"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${youtube_access_key_id},s3-secret-access-key=${youtube_secret_access_key},s3-endpoint=${youtube_endpoint}" 
+    driver_opts:
+      type: rclone
+      device: ":s3,override.ca_cert=/home/drew/.config/jellyfin/rustfs-ca.pem:/youtube"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Minio,s3-access-key-id=${youtube_access_key_id},s3-secret-access-key=${youtube_secret_access_key},s3-endpoint=${youtube_endpoint}"
+
   music:
-    driver_opts: 
-      type: rclone 
-      device: ":s3:/music"
-      o: "allow-other,uid=1000,gid=100,s3-provider=Other,s3-access-key-id=${music_access_key_id},s3-secret-access-key=${music_secret_access_key},s3-endpoint=${music_endpoint}" 
+    driver_opts:
+      type: rclone
+      device: ":s3,override.ca_cert=/home/drew/.config/jellyfin/rustfs-ca.pem:/music"
+      o: "allow-other,uid=1000,gid=100,s3-provider=Other,s3-access-key-id=${music_access_key_id},s3-secret-access-key=${music_secret_access_key},s3-endpoint=${music_endpoint}"
+
 # networks:
 #   main:
 #     driver: bridge
